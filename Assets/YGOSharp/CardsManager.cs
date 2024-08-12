@@ -22,19 +22,13 @@ namespace YGOSharp
 
         internal static void initialize(string databaseFullPath)
         {
-            nullName = InterString.Get("欢迎使用MDPro2");
+            nullName = InterString.Get("欢迎使用MDPro2宵版");
             nullString = @"
 快捷键功能：
 F4：开关卡片描述；
 F5：开关决斗时的UI；
 
-玩家交流群：
-1群：814558068
-2群：892761086
-3群：765638474
-4群：420249634
-5群：590212714
-6群：709836494"
+玩家交流群：765638474"
 
 
 ;

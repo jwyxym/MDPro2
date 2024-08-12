@@ -210,7 +210,7 @@ public class GameStringHelper
 
     public static string GetType(Card data)
     {
-        var re = "  Bilibili @赤子奈落";
+        var re = "  Bilibili @今晚有宵夜吗";
         try
         {
             if (data.Id != 0)
