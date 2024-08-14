@@ -59,7 +59,7 @@ public class Menu : WindowServantSP
         // var ver = verFile[0];
         // var url = verFile[1];
         var ver= UIHelper.getByName<UILabel>(gameObject, "version_").text;
-        var www = UnityWebRequest.Get("https://raw.githubusercontent.com/jwyxym/MDPro2/main/ver.txt");
+        var www = UnityWebRequest.Get("https://gitee.com/jwyxym/mdpro2-release/raw/master/config/MDPro2_version.txt");
         www.SetRequestHeader("Cache-Control", "max-age=0, no-cache, no-store");
         www.SetRequestHeader("Pragma", "no-cache");
         yield return www.SendWebRequest();
