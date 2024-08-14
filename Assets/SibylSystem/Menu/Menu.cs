@@ -70,7 +70,7 @@ public class Menu : WindowServantSP
             var mats = lines[0].Split(":.:");
             if (ver != mats[0])
             {
-                Program.PrintToChat(InterString.Get("MDPro2 自动更新：[ffff00]检测到新版本，请加群814558068更新。[-]"));
+                Program.PrintToChat(InterString.Get("MDPro2 自动更新：[ffff00]检测到新版本，请打开根目录update文件夹中的exe文件更新。[-]"));
                 // upurl = mats[1];
                 // for (var i = 1; i < lines.Length; i++) uptxt += lines[i] + "\n";
             }
