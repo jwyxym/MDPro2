@@ -30,7 +30,7 @@ public class Menu : WindowServantSP
         UIHelper.registEvent(gameObject, "exit_", onClickExit);
         UIHelper.registEvent(gameObject, "animation_", onClickAnimation);
         //MDPRO2 update
-        UIHelper.getByName<UILabel>(gameObject, "version_").text = "3.0.0";
+        UIHelper.getByName<UILabel>(gameObject, "version_").text = "3.0.1";
         Program.I().StartCoroutine(checkUpdate());
     }
 
@@ -70,7 +70,7 @@ public class Menu : WindowServantSP
             var mats = lines[0].Split(":.:");
             if (ver != mats[0])
             {
-                Program.PrintToChat(InterString.Get("MDPro2 自动更新：[ffff00]检测到新版本，请打开根目录update文件夹中的exe文件更新。[-]"));
+                Program.PrintToChat(InterString.Get("MDPro2 自动更新：[ffff00]检测到新版本，请打开根目录MDPro2_downloader文件夹中的exe文件更新。[-]"));
                 // upurl = mats[1];
                 // for (var i = 1; i < lines.Length; i++) uptxt += lines[i] + "\n";
             }
