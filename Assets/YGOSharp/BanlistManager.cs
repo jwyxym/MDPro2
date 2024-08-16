@@ -13,6 +13,12 @@ namespace YGOSharp
             AddBanlistNA(fileName);
         }
 
+        public static bool BanlistWithSameName(Banlist current)
+        {
+            foreach (var item in Banlists)
+                if (item.Name == current.Name) return true;
+            return false;
+        }
         public static void AddBanlistNA(string fileName)
         {
             if (fileName != "config/lflist.conf") return;
@@ -37,7 +43,7 @@ namespace YGOSharp
                     {
                         current = new Banlist();
                         current.Name = line.Substring(1, line.Length - 1);
-                        Banlists.Add(current);
+                        if (!BanlistWithSameName(current)) Banlists.Add(current);
                         continue;
                     }
                     if (!line.Contains(" "))
