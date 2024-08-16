@@ -6,6 +6,7 @@ namespace YGOSharp
     public static class BanlistManager
     {
         public static List<Banlist> Banlists = new List<Banlist>();
+        public static List<string> BanlistsNames = new List<string>();
 
         public static void initialize(string fileName)
         {
@@ -13,19 +14,15 @@ namespace YGOSharp
             AddBanlistNA(fileName);
         }
 
-        public static bool BanlistWithSameName(Banlist current)
-        {
-            foreach (var item in Banlists)
-                if (item.Name == current.Name) return true;
-            return false;
-        }
         public static void AddBanlistNA(string fileName)
         {
             if (fileName != "config/lflist.conf") return;
             Banlist current = new Banlist();
             current.Name = "N/A";
             Banlists.Add(current);
+            BanlistsNames.Add(current.Name);
         }
+
         public static void AddBanlist(string fileName)
         {
             Banlist current = null;
@@ -43,7 +40,9 @@ namespace YGOSharp
                     {
                         current = new Banlist();
                         current.Name = line.Substring(1, line.Length - 1);
-                        if (!BanlistWithSameName(current)) Banlists.Add(current);
+                        if (BanlistsNames.Contains(current.Name)) continue;
+                        Banlists.Add(current);
+                        BanlistsNames.Add(current.Name);
                         continue;
                     }
                     if (!line.Contains(" "))
@@ -82,9 +81,9 @@ namespace YGOSharp
         public static List<string> getAllName()
         {
             List<string> returnValue = new List<string>();
-            foreach (var item in Banlists)
+            foreach (var name in BanlistsNames)
             {
-                returnValue.Add(item.Name);
+                returnValue.Add(name);
             }
             return returnValue;
         }
