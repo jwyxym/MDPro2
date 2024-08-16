@@ -385,8 +385,7 @@ public class Program : MonoBehaviour
             fileInfos = new DirectoryInfo("expansions").GetFiles();
             foreach (var file in fileInfos)
             {
-                if (file.Name.ToLower().EndsWith(".ypk"))
-                    GameZipManager.Zips.Add(new ZipFile("expansions/" + file.Name));
+                if (file.Name.ToLower().EndsWith(".ypk")) GameZipManager.Zips.Add(new ZipFile("expansions/" + file.Name));
                 if (file.Name.ToLower().EndsWith("lflist.conf")) BanlistManager.initialize("expansions/" + file.Name);
                 if (file.Name.ToLower().EndsWith(".conf")) GameStringManager.initialize("expansions/" + file.Name);
                 if (file.Name.ToLower().EndsWith(".cdb")) CardsManager.initialize("expansions/" + file.Name);
@@ -408,6 +407,7 @@ public class Program : MonoBehaviour
             fileInfos = new DirectoryInfo("diy").GetFiles();
             foreach (var file in fileInfos)
             {
+                if (file.Name.ToLower().EndsWith("lflist.conf")) BanlistManager.initialize("diy/" + file.Name);
                 if (file.Name.ToLower().EndsWith(".conf")) GameStringManager.initialize("diy/" + file.Name);
                 if (file.Name.ToLower().EndsWith(".cdb")) CardsManager.initialize("diy/" + file.Name);
             }

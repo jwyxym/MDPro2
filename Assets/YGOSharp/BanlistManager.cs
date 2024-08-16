@@ -12,11 +12,6 @@ namespace YGOSharp
             AddBanlist(fileName);
             AddBanlistNA(fileName);
         }
-        public static void initialize(ZipFile zip)
-        {
-            foreach (string file in zip.EntryFileNames)
-                if (file.ToLower().EndsWith("lflist.conf")) initialize("expansions/" + file);
-        }
 
         public static void AddBanlistNA(string fileName)
         {
