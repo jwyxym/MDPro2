@@ -387,6 +387,7 @@ public class Program : MonoBehaviour
             {
                 if (file.Name.ToLower().EndsWith(".ypk"))
                     GameZipManager.Zips.Add(new ZipFile("expansions/" + file.Name));
+                if (file.Name.ToLower().EndsWith("lflist.conf")) BanlistManager.initialize("expansions/" + file.Name);
                 if (file.Name.ToLower().EndsWith(".conf")) GameStringManager.initialize("expansions/" + file.Name);
                 if (file.Name.ToLower().EndsWith(".cdb")) CardsManager.initialize("expansions/" + file.Name);
             }

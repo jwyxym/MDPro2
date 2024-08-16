@@ -5,11 +5,28 @@ namespace YGOSharp
 {
     public static class BanlistManager
     {
-        public static List<Banlist> Banlists { get; private set; }
+        public static List<Banlist> Banlists = new List<Banlist>();
 
         public static void initialize(string fileName)
         {
-            Banlists = new List<Banlist>();
+            AddBanlist(fileName);
+            AddBanlistNA(fileName);
+        }
+        public static void initialize(ZipFile zip)
+        {
+            foreach (string file in zip.EntryFileNames)
+                if (file.ToLower().EndsWith("lflist.conf")) initialize("expansions/" + file);
+        }
+
+        public static void AddBanlistNA(string fileName)
+        {
+            if (fileName != "config/lflist.conf") return;
+            Banlist current = new Banlist();
+            current.Name = "N/A";
+            Banlists.Add(current);
+        }
+        public static void AddBanlist(string fileName)
+        {
             Banlist current = null;
             StreamReader reader = new StreamReader(fileName);
             while (!reader.EndOfStream)
@@ -43,9 +60,6 @@ namespace YGOSharp
                     UnityEngine.Debug.Log(e);
                 }
             }
-            current = new Banlist();
-            current.Name ="N/A";
-            Banlists.Add(current);
         }
 
         public static int GetIndex(uint hash)
