@@ -496,6 +496,10 @@ public class GameField : OCGobject
 
                         if (tex == null) tex = UIHelper.GetTexture2D("picture/field/" + code + ".png");
                         if (tex == null) tex = UIHelper.GetTexture2D("picture/field/" + code + ".jpg");
+                        if (tex == null) tex = UIHelper.GetTexture2D("expansions/pics/field/" + code + ".png");
+                        if (tex == null) tex = UIHelper.GetTexture2D("expansions/pics/field/" + code + ".jpg");
+                        if (tex == null) tex = UIHelper.GetTexture2D("diy/pics/field/" + code + ".png");
+                        if (tex == null) tex = UIHelper.GetTexture2D("diy/pics/field/" + code + ".jpg");
                         if (tex != null)
                         {
                             UIHelper.getByName<UITexture>(gameObject, "field_" + player).mainTexture = tex;

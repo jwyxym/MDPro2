@@ -126,6 +126,16 @@ public class GameTextureManager
 
         foreach (var extname in new[] {".png", ".jpg"})
         {
+            foreach (var folder in new[] {"expansions", "diy"})
+            {
+                var ex_path = $"{folder}/pics/{code}{extname}";
+                if (File.Exists(ex_path))
+                {
+                    var result = UIHelper.GetTexture2DAsync(ex_path);
+                    loadedPicture.Add(code, result);
+                    return await result;
+                }
+            }
             var path = $"picture/card/{code}{extname}";
             if (File.Exists(path))
             {
@@ -141,6 +151,15 @@ public class GameTextureManager
     {
         foreach (var extname in new[] { ".png", ".jpg" })
         {
+            foreach (var folder in new[] {"expansions", "diy"})
+            {
+                var ex_path = $"{folder}/pics/{code}{extname}";
+                if (File.Exists(ex_path))
+                {
+                    var result = UIHelper.GetTexture2D(ex_path);
+                    return result;
+                }
+            }
             var path = $"picture/card/{code}{extname}";
             if (File.Exists(path))
             {
