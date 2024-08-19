@@ -393,19 +393,6 @@ public class Program : MonoBehaviour
             }
         }
 
-        if (Directory.Exists("diy"))
-        {
-            fileInfos = new DirectoryInfo("diy").GetFiles();
-            foreach (var file in fileInfos)
-            {
-                if (file.Name.ToLower().EndsWith(".ypk")) GameZipManager.Zips.Add(new ZipFile("diy/" + file.Name));
-                if (file.Name.ToLower().EndsWith(".zip")) GameZipManager.Zips.Add(new ZipFile("diy/" + file.Name));
-                if (file.Name.ToLower().EndsWith("lflist.conf")) BanlistManager.initialize("diy/" + file.Name);
-                if (file.Name.ToLower().EndsWith(".conf")) GameStringManager.initialize("diy/" + file.Name);
-                if (file.Name.ToLower().EndsWith(".cdb")) CardsManager.initialize("diy/" + file.Name);
-            }
-        }
-
         if (Directory.Exists("cdb"))
         {
             fileInfos = new DirectoryInfo("cdb").GetFiles();
