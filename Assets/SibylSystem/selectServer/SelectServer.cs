@@ -30,7 +30,7 @@ public class SelectServer : WindowServantSP
         inputPort = UIHelper.getByName<UIInput>(gameObject, "port_");
         inputPsw = UIHelper.getByName<UIInput>(gameObject, "psw_");
         inputVersion = UIHelper.getByName<UIInput>(gameObject, "version_");
-        inputVersion.value = "0x" + string.Format("{0:X}", Config.ClientVersion);
+        inputVersion.value = Config.ClientVersion.ToString();
         SetActiveFalse();
     }
 
