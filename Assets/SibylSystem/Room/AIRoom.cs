@@ -238,7 +238,7 @@ public class AIRoom : WindowServantSP
         //ChildProcessTracker.AddProcess(serverProcess);
         ChildProcessTracker.AddProcess(botProcess);
 
-        string name = Config.Get("name", "一秒一咕机会");
+        string name = Config.Get("name", "今晚有宵夜吗");
         Program.I().ocgcore.returnServant = Program.I().aiRoom;
         (new Thread(() => { Thread.Sleep(500); TcpHelper.join("127.0.0.1", name, port, "", ""); })).Start();
         //RMSshow_none(InterString.Get("您在AI模式下遇到的BUG也极有可能会在联机的时候出现，所以请务必向我们报告。"));
