@@ -396,7 +396,7 @@ public class selectReplay : WindowServantSP
     {
         Program.I().ocgcore.returnServant = Program.I().selectReplay;
         Program.I().ocgcore.handler = a => { };
-        Program.I().ocgcore.name_0 = Config.Get("name", "一秒一喵机会");
+        Program.I().ocgcore.name_0 = Config.Get("name", "今晚有宵夜吗");
         Program.I().ocgcore.name_0_c = Program.I().ocgcore.name_0;
         Program.I().ocgcore.name_1 = "Percy AI";
         Program.I().ocgcore.name_0_tag = "---";
