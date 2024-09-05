@@ -4802,6 +4802,7 @@ public class Ocgcore : ServantWithCardDescription
                     break;
                 if (card != null)
                 {
+                    ES_hint = InterString.Get("「[?]」的效果处理时", card.get_data().Name);
                     card.CS_chainCircleYellow();
                     if (card.disabled || card.negated)
                         break;
