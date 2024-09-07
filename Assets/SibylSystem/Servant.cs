@@ -566,6 +566,39 @@ public class Servant
         }
         UIHelper.InterGameObject(currentMSwindow);
     }
+    
+    public void RMSshow_singleChoice(string hashCode, List<(string,Action)> options)
+    {
+        RMSshow_clear();
+        currentMShash = hashCode;
+        currentMStype = messageSystemType.singleChoice;
+        currentMSwindow = create
+        (
+            Program.I().ES_Single_multiple_window,
+            MSentre(),
+            Vector3.zero,
+            true,
+            Program.I().ui_main_2d
+        );
+        var sp = UIHelper.getByName<UI2DSprite>(currentMSwindow, "under");
+        sp.height = 50 + options.Count * 50;
+        for (var i = 0; i < options.Count; i++)
+        {
+            var btn = create
+            (
+                Program.I().ES_Single_option,
+                new Vector3(-2, sp.height / 2 - 50 - 50 * i, 0),
+                Vector3.zero,
+                false,
+                sp.gameObject,
+                false
+            );
+            UIHelper.trySetLabelText(btn, "[u]" + options[i].Item1);
+            Action action = options[i].Item2;
+            UIHelper.registEvent(btn, btn.name, (t1, t2) => { action?.Invoke(); }, null);
+        }
+        UIHelper.InterGameObject(currentMSwindow);
+    }
 
     private int RMSshow_multipleChoice_count;
 
