@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using UnityEngine;
@@ -13,6 +15,7 @@ public class SelectServer : WindowServantSP
     private UIInput inputPsw;
     private UIInput inputVersion;
     private UIPopupList list;
+    private UIButton preIp;
 
     public string name = "";
 
@@ -31,7 +34,86 @@ public class SelectServer : WindowServantSP
         inputPsw = UIHelper.getByName<UIInput>(gameObject, "psw_");
         inputVersion = UIHelper.getByName<UIInput>(gameObject, "version_");
         inputVersion.value = Config.ClientVersion.ToString();
+        //添加选择服务器
+        preIp = UIHelper.getByName<UIButton>(gameObject, "_preIP");
+        EventDelegate.Add(preIp.onClick, OnPreIPClick);
+        preIp.gameObject.SetActive(CheckPreIPShow());
         SetActiveFalse();
+    }
+
+    /// <summary>
+    /// 检查是否该显示预设服务器
+    /// </summary>
+    /// <returns></returns>
+    private bool CheckPreIPShow()
+    {
+        FileInfo fileInfo = new FileInfo($"config/preHosts.conf");
+        if (!fileInfo.Exists)
+        {
+            return false;
+        }
+        List<(string, string, string)> preIpInfo = new List<(string, string, string)>();
+        
+        using (var reader = fileInfo.OpenText())
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                var group = line.Split('|');
+                if (group.Length >= 3)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 点击选择预设服务器键出现的事件
+    /// </summary>
+    private void OnPreIPClick()
+    {
+        FileInfo fileInfo = new FileInfo($"config/preHosts.conf");
+        if (!fileInfo.Exists)
+        {
+            return;
+        }
+        List<(string, string, string)> preIpInfo = new List<(string, string, string)>();
+        using (var reader = fileInfo.OpenText())
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                var group = line.Split('|');
+                if (group.Length >= 3)
+                {
+                    preIpInfo.Add((group[0],group[1],group[2]));
+                }
+            }
+        }
+        if (preIpInfo.Count == 0)
+        {
+            return;
+        }
+        var values = new List<(string, Action)>();
+        for (var i = 0; i < preIpInfo.Count; i++)
+        {
+            var stringGroup = preIpInfo[i];
+            values.Add(($"{stringGroup.Item1}({stringGroup.Item2}|{stringGroup.Item3})", () =>
+            {
+                inputIP.value = stringGroup.Item2;
+                inputPort.value = stringGroup.Item3;
+                RMSshow_clear();
+            }));
+        }
+        values.Add((InterString.Get("取消"), () =>
+        {
+            RMSshow_clear();
+        }));
+
+        RMSshow_singleChoice("NULL", values);
     }
 
     private void onSelected()
