@@ -101,14 +101,14 @@ public class SelectServer : WindowServantSP
         for (var i = 0; i < preIpInfo.Count; i++)
         {
             var stringGroup = preIpInfo[i];
-            values.Add(($"{stringGroup.Item1}({stringGroup.Item2}|{stringGroup.Item3})", () =>
+            values.Add(($"{stringGroup.Item1}({stringGroup.Item2}:{stringGroup.Item3})", () =>
             {
                 inputIP.value = stringGroup.Item2;
                 inputPort.value = stringGroup.Item3;
                 RMSshow_clear();
             }));
         }
-        values.Add((InterString.Get("取消"), () =>
+        values.Add((InterString.Get("取消(预设服务器可以在config/preHosts.conf中修改内容)"), () =>
         {
             RMSshow_clear();
         }));

@@ -26,6 +26,8 @@ namespace YGOSharp
             nullString = @"
 因@赤子奈落@不再更新MDPro2，本客户端由@今晚有宵夜吗@继承并更新发布
 
+（感谢白织星大佬为MDPro2更新提供帮助）
+
 快捷键功能：
 F4：开关卡片描述；
 F5：开关决斗时的UI；
